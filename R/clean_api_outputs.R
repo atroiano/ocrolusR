@@ -19,7 +19,7 @@ pluck_map = function(x,name){
 #' @return list of core_info, activity_info, activing_info_missing, periods
 #' @export
 extract_bank_accounts_details = function(book_info_response){
-  enframed = book_info$response$bank_accounts %>% enframe
+  enframed = book_info_response$response$bank_accounts %>% enframe
   core_info = enframed %>% mutate(
     holder_state = map_chr(value, ~pluck_map(.x,'holder_state'))
     ,bank_name = map_chr(value, ~pluck_map(.x,'bank_name'))
