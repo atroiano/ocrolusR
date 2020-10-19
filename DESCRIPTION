@@ -14,5 +14,5 @@ Depends:
     httr (>= 1.4.2),
     jsonlite (>= 1.7.1),
     janitor (>= 2.0.0),
-    tidyverse (>=1.3.0)
+    tidyverse (>= 1.3.0)
     
