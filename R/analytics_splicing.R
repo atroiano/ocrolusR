@@ -93,5 +93,10 @@ get_negative_balance <- function(df,col_name){
   month_data = map(month_cols, function(x,df=df_data){
     df_unnested = df %>% select(x) %>% pull(x) %>% compact
   })
-  month_data = month_data %>% reduce(c) %>% enframe %>% unnest(value) %>% select(negative_dates = value)
+  month_data = month_data %>% reduce(c) %>% enframe %>% unnest(value) %>% select(negative_dates = value)  %>% mutate(negative_dates = as.Date(as.POSIXct(negative_dates, format = '%m/%d/%Y'))
+                                                                                                                     ,month_negative_balance = lubridate::month(negative_dates)
+                                                                                                                     ,month_name_negative_balance = months.Date(negative_dates)
+                                                                                                                     ,year_negative_balance = lubridate::year(negative_dates)
+                                                                                                                     ,week_negative_balance = lubridate::week(negative_dates)
+  )
 }
