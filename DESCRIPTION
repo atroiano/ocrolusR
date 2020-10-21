@@ -16,6 +16,6 @@ Depends:
     janitor (>= 2.0.0),
     tidyverse (>= 1.3.0),
     lubridate (>= 1.7.9),
-    DBI (>=1.10),
-    odbc (>=1.2.2)
+    DBI (>= 1.10),
+    odbc (>= 1.2.2)
     
