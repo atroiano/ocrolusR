@@ -1,5 +1,5 @@
 # ocrolusR
-The ocrolusR package has simple functions for accessing and storing Ocrolus book data into a database. It was built with analysts who want to pull and archive the data from their APIs in mind.  You'll need to github install the package.
+The ocrolusR package has simple functions for accessing and storing Ocrolus book data into a database. It was built with analysts in mind who want to pull and archive the data from the APIs.  You'll need to github install the package.
 
 The main **ocrolousR** functions:
   * Get Book Data
