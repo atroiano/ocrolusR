@@ -10,3 +10,7 @@ The main **ocrolousR** functions:
   * Loads all data to a database.
 
 If anyone wants to help build dummy json responses for testing, that would be a huge addition.  Right now, it's all been tested locally.
+
+## Package Installation
+
+``` devtools::install_github("atroiano/ocrolusR") ```
