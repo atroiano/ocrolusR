@@ -5,12 +5,14 @@
 \title{Create Database Backend
 Initalize a database backend}
 \usage{
-get_all_data_from_table(connection, table_name)
+get_all_data_from_table(connection, table_name, schema)
 }
 \arguments{
 \item{connection}{connection object}
 
 \item{table_name}{the name of the table to get data from}
+
+\item{schema}{the schema the table is located in}
 }
 \value{
 connection object

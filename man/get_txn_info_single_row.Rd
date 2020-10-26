@@ -4,7 +4,7 @@
 \alias{get_txn_info_single_row}
 \title{Get Transactions That return a single value}
 \usage{
-get_txn_info_single_row(df, col)
+get_txn_info_single_row(df, col_name)
 }
 \arguments{
 \item{df}{df with the columns to grab}

@@ -73,7 +73,7 @@ extract_nested_df = function(df,col_with_data,pluck_value)
   df %>%
     mutate(
       extract = map({{col_with_data}},~pluck_map(.x,pluck_value))
-    ) %>% unnest(extract) %>% select_if(~!(is.list(.x)))
+    ) %>% unnest(extract) %>% select_if(~!(is.list(.x))) %>% clean_names()
 
 }
 

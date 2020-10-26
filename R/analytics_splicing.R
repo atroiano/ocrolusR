@@ -37,10 +37,13 @@ unnest_bank_transactions = function(df,col){
 #' @export
 get_min_max_by_month = function(df,col_name){
   month_cols = df %>% select(contains(col_name)) %>% colnames
+  if (length(month_cols)==0){
+    return(NULL)
+  }
 
   df_data = df
   month_data = map(month_cols, function(x,df=df_data){
-    df_unnested = df %>% select(x) %>% unnest(cols= !!as.symbol(x))
+    df_unnested = df %>% select(x) %>% unnest(cols= !!as.symbol(x)) %>% clean_names()  %>% remove_empty(which = c('rows','cols'))
     cols =colnames(df)
     if ('bbox' %in% cols){
 
@@ -65,10 +68,14 @@ get_min_max_by_month = function(df,col_name){
 #' @param col_name the column containing the single values
 #' @return df with the selected columns
 #' @export
-get_txn_info_single_row = function(df,col){
-  df %>% select(contains(col)) %>%
-    pivot_longer(cols=contains(col)) %>% separate(name,c('key','date'),sep= '[.]',fill='left') %>% select(-key) %>%
-    mutate(date = convert_to_date(date) )
+get_txn_info_single_row = function(df,col_name){
+  month_cols = df %>% select(contains(col_name)) %>% colnames
+  if (length(month_cols)==0){
+    return(NULL)
+  }
+  df %>% select(contains(col_name)) %>%
+    pivot_longer(cols=contains(col_name)) %>% separate(name,c('key','date'),sep= '[.]',fill='left') %>% select(-key) %>%
+    mutate(date = convert_to_date(date) )%>% clean_names()
 }
 
 #' Unnest the Analytics DFs
@@ -89,6 +96,9 @@ unnest_analytics_df= function(df,col)
 #' @export
 get_negative_balance <- function(df,col_name){
   month_cols = df %>% select(contains(col_name)) %>% colnames
+  if (length(month_cols)==0){
+    return(NULL)
+  }
   df_data = df
   month_data = map(month_cols, function(x,df=df_data){
     df_unnested = df %>% select(x) %>% pull(x) %>% compact
@@ -98,5 +108,5 @@ get_negative_balance <- function(df,col_name){
                                                                                                                      ,month_name_negative_balance = months.Date(negative_dates)
                                                                                                                      ,year_negative_balance = lubridate::year(negative_dates)
                                                                                                                      ,week_negative_balance = lubridate::week(negative_dates)
-  )
+  ) %>% distinct
 }
